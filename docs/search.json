@@ -6,7 +6,7 @@
       "description": "Some additional details about the website",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-08-08T14:06:27-07:00"
+      "last_modified": "2021-08-08T14:09:06-07:00"
     },
     {
       "path": "cv.html",
@@ -14,14 +14,14 @@
       "description": "This is my super impressive CV!",
       "author": [],
       "contents": "\n\n\nggplot(data = diamonds, aes(x = carat, y = price)) +\n  geom_point(aes(color = price))\n\n\n\n\n\n\n\n",
-      "last_modified": "2021-08-08T14:06:30-07:00"
+      "last_modified": "2021-08-08T14:09:08-07:00"
     },
     {
       "path": "index.html",
       "title": "Grace Lewin",
       "author": [],
-      "contents": "\n\n          \n          \n          My Website\n          \n          \n          Home\n          About\n          My CV\n          ☰\n          \n          \n      \n        \n          \n            Grace Lewin\n          \n          \n            \n              This is my professional profile!\n              And why I’m so cool\n            \n            \n              This is my professional profile!\n              And why I’m so cool\n            \n          \n\n          \n            \n              \n                  \n                    \n                      LinkedIn\n                    \n                  \n                \n                                \n                  \n                    \n                      Twitter\n                    \n                  \n                \n                                \n                  \n                    \n                      GitHub\n                    \n                  \n                \n                                \n                  \n                    \n                      Email\n                    \n                  \n                \n                              \n          \n\n          \n            \n              \n                                \n                  \n                    LinkedIn\n                  \n                \n                                \n                  \n                    Twitter\n                  \n                \n                                \n                  \n                    GitHub\n                  \n                \n                                \n                  \n                    Email\n                  \n                \n                              \n            \n          \n        \n      \n    \n\n    \n    \n    ",
-      "last_modified": "2021-08-08T14:06:30-07:00"
+      "contents": "\n\n          \n          \n          My Website\n          \n          \n          Home\n          About\n          My CV\n          ☰\n          \n          \n      \n        \n          \n            Grace Lewin\n          \n          \n            \n              This is my professional profile!\n            \n            \n              This is my professional profile!\n            \n          \n\n          \n            \n              \n                  \n                    \n                      LinkedIn\n                    \n                  \n                \n                                \n                  \n                    \n                      Twitter\n                    \n                  \n                \n                                \n                  \n                    \n                      GitHub\n                    \n                  \n                \n                                \n                  \n                    \n                      Email\n                    \n                  \n                \n                              \n          \n\n          \n            \n              \n                                \n                  \n                    LinkedIn\n                  \n                \n                                \n                  \n                    Twitter\n                  \n                \n                                \n                  \n                    GitHub\n                  \n                \n                                \n                  \n                    Email\n                  \n                \n                              \n            \n          \n        \n      \n    \n\n    \n    \n    ",
+      "last_modified": "2021-08-08T14:09:08-07:00"
     }
   ],
   "collections": []

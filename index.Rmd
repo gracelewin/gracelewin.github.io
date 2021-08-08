@@ -16,5 +16,3 @@ site: distill::distill_website
 ---
  
 This is my professional profile!
-
-And why I'm so cool
