@@ -1,0 +1,36 @@
+[
+  {
+    "path": "posts/2021-08-10-a-function-i-learned/",
+    "title": "A function I learned",
+    "description": "Using ggplot to plot data.",
+    "author": [
+      {
+        "name": "Grace Lewin",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-10",
+    "categories": [],
+    "contents": "\nggplot() is a function that makes different kinds of plots. This example uses data from the palmerpenguins dataset and shows body mass vs flipper length. The graph shown below is a scatterplot, defined by `geom_point().\n\n\n\n\n\n\n",
+    "preview": "posts/2021-08-10-a-function-i-learned/images/ggplot2.jpg",
+    "last_modified": "2021-08-10T11:01:39-07:00",
+    "input_file": {}
+  },
+  {
+    "path": "posts/2021-08-10-hello/",
+    "title": "My first blog post",
+    "description": "Something really important",
+    "author": [
+      {
+        "name": "Grace Lewin",
+        "url": {}
+      }
+    ],
+    "date": "2021-08-10",
+    "categories": [],
+    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-08-10T10:23:50-07:00",
+    "input_file": {}
+  }
+]

@@ -1,0 +1,33 @@
+---
+title: "A function I learned"
+description: |
+  Using ggplot to plot data.
+author:
+  - name: Grace Lewin
+    url: {}
+date: 08-10-2021
+output:
+  distill::distill_article:
+    self_contained: false
+preview: images/ggplot2.jpg
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+`ggplot()` is a function that makes different kinds of plots. This example uses data from the palmerpenguins dataset and shows body mass vs flipper length. The graph shown below is a scatterplot, defined by `geom_point().
+
+```{r}
+ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(color = "blue") +
+  labs(title = "Body Mass vs Flipper Length", 
+       x = " Flipper Length (mm)", 
+       y = "Body Mass (g)")
+```
+
+
+
