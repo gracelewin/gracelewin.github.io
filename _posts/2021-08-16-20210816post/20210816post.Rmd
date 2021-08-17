@@ -1,0 +1,39 @@
+---
+title: "These are a few of my favorite things..."
+description: |
+  Some Functions and concepts I've learned so far
+author:
+  - name: Grace Lewin
+    url: {}
+date: 08-16-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
+```
+
+`summarize()` function:
+
+The `summarize()` function creates a new data frame. This data frame will have rows for each combination of grouping variables. These grouping variables are specified by `group_by()`. The columns in this data frame are the summary statistics you have specified (ex. mean(), max(), min(), sd(), etc.)
+
+Here is an example of using the `summarize()` function:
+
+In this example I'm grouping by species, and island, and then finding the mean and standard deviation for flipper length (in mm) for those groups.
+
+```{r}
+mean_sd_penguins <- penguins %>% 
+  group_by(species, island) %>% 
+  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm = TRUE),
+            sd_flipper_length = sd(flipper_length_mm, na.rm = TRUE))
+
+mean_sd_penguins
+
+```
+
+

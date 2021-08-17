@@ -19,11 +19,11 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-`ggplot()` is a function that makes different kinds of plots. This example uses data from the palmerpenguins dataset and shows body mass vs flipper length. The graph shown below is a scatterplot, defined by `geom_point().
+`ggplot()` is a function that makes different kinds of plots. This example uses data from the palmerpenguins dataset and shows body mass vs flipper length. The graph shown below is a scatterplot, defined by `geom_point()`. The graph also is colored by species, using `geom_point(aes(color = species))`.
 
 ```{r}
 ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
-  geom_point(color = "blue") +
+  geom_point(aes(color = species)) +
   labs(title = "Body Mass vs Flipper Length", 
        x = " Flipper Length (mm)", 
        y = "Body Mass (g)")
