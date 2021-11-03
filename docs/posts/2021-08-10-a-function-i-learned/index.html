@@ -90,6 +90,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <meta property="description" itemprop="description" content="Using ggplot to plot data."/>
 
+<link rel="canonical" href="https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/"/>
 
 <!--  https://schema.org/Article -->
 <meta property="article:published" itemprop="datePublished" content="2021-08-10"/>
@@ -100,19 +101,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="og:title" content="My Website: A function I learned"/>
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="Using ggplot to plot data."/>
+<meta property="og:url" content="https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/"/>
+<meta property="og:image" content="https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/images/ggplot2.jpg"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="My Website"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary"/>
+<meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:title" content="My Website: A function I learned"/>
 <meta property="twitter:description" content="Using ggplot to plot data."/>
+<meta property="twitter:url" content="https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/"/>
+<meta property="twitter:image" content="https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/images/ggplot2.jpg"/>
 
+<!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+<meta name="citation_title" content="My Website: A function I learned"/>
+<meta name="citation_fulltext_html_url" content="https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/"/>
+<meta name="citation_online_date" content="2021/08/10"/>
+<meta name="citation_publication_date" content="2021/08/10"/>
+<meta name="citation_author" content="Grace Lewin"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview"]}},"value":[{"type":"character","attributes":{},"value":["A function I learned"]},{"type":"character","attributes":{},"value":["Using ggplot to plot data."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Grace Lewin"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["08-10-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["images/ggplot2.jpg"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["A function I learned"]},{"type":"character","attributes":{},"value":["Using ggplot to plot data."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Grace Lewin"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["08-10-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["images/ggplot2.jpg"]},{"type":"character","attributes":{},"value":["https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/"]},{"type":"character","attributes":{},"value":["https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -463,7 +474,7 @@ d-title {
 
 </style>
 
-<script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
 <link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1870,7 +1881,10 @@ function init_distill() {
 
     // hoverable references
     $('span.citation[data-cites]').each(function() {
-      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      var refs = $(this).attr('data-cites').split(" ");
+      var refHtml = refs.map(function(ref) {
+        return "<p>" + $('#ref-' + ref).html() + "</p>";
+      }).join("\n");
       window.tippy(this, {
         allowHTML: true,
         content: refHtml,
@@ -2195,6 +2209,10 @@ d-appendix {
 
 /*-- Additional custom styles --*/
 /* Add any additional CSS rules below                      */
+
+h3{
+  color: #C41A60;
+}
 </style>
 <style type="text/css">
 /* base style */
@@ -2372,7 +2390,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"A function I learned","description":"Using ggplot to plot data.","authors":[{"author":"Grace Lewin","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-08-10T00:00:00.000+00:00","citationText":"Lewin, 2021"}
+{"title":"A function I learned","description":"Using ggplot to plot data.","authors":[{"author":"Grace Lewin","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-08-10T00:00:00.000-07:00","citationText":"Lewin, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2388,6 +2406,9 @@ d-appendix d-footnote-list a.footnote-backlink {
 <a href="../../about.html">About</a>
 <a href="../../cv.html">My CV</a>
 <a href="../../blog.html">Blog</a>
+<a href="https://github.com/gracelewin/gracelewin.github.io" aria-label="Link to source">
+<i class="fab fa-github" aria-hidden="true"></i>
+</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2426,7 +2447,18 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+  <h3 id="citation">Citation</h3>
+  <p>For attribution, please cite this work as</p>
+  <pre class="citation-appendix short">Lewin (2021, Aug. 10). My Website: A function I learned. Retrieved from https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/</pre>
+  <p>BibTeX citation</p>
+  <pre class="citation-appendix long">@misc{lewin2021a,
+  author = {Lewin, Grace},
+  title = {My Website: A function I learned},
+  url = {https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/},
+  year = {2021}
+}</pre>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->

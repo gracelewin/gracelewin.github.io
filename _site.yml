@@ -2,6 +2,7 @@ name: "gracelewin.github.io"
 title: "My Website"
 description: |
   My Website
+base_url: https://gracelewin.github.io/
 output_dir: "docs"
 navbar:
   right:
@@ -13,5 +14,6 @@ navbar:
       href: cv.html
     - text: "Blog"
       href: blog.html
+  source_url: https://github.com/gracelewin/gracelewin.github.io
 output: distill::distill_article
 theme: theme.css
