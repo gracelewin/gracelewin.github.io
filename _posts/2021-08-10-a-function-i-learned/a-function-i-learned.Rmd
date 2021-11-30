@@ -1,7 +1,7 @@
 ---
-title: "A function I learned"
+title: "Using ggplot"
 description: |
-  Using ggplot to plot data.
+  An example using ggplot to plot data.
 author:
   - name: Grace Lewin
     url: {}
@@ -14,7 +14,7 @@ preview: images/ggplot2.jpg
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE, include = TRUE)
 library(tidyverse)
 library(palmerpenguins)
 ```

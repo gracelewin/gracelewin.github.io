@@ -18,8 +18,8 @@
   },
   {
     "path": "posts/2021-08-16-20210816post/",
-    "title": "These are a few of my favorite things...",
-    "description": "Some Functions and concepts I've learned so far",
+    "title": "summarize() Function",
+    "description": "Description and example of the summarize() function",
     "author": [
       {
         "name": "Grace Lewin",
@@ -30,13 +30,13 @@
     "categories": [],
     "contents": "\nsummarize() function:\nThe summarize() function creates a new data frame. This data frame will have rows for each combination of grouping variables. These grouping variables are specified by group_by(). The columns in this data frame are the summary statistics you have specified (ex. mean(), max(), min(), sd(), etc.)\nHere is an example of using the summarize() function:\nIn this example I’m grouping by species, and island, and then finding the mean and standard deviation for flipper length (in mm) for those groups.\n\n\nmean_sd_penguins <- penguins %>% \n  group_by(species, island) %>% \n  summarize(mean_flipper_length = mean(flipper_length_mm, na.rm = TRUE),\n            sd_flipper_length = sd(flipper_length_mm, na.rm = TRUE))\n\nmean_sd_penguins\n\n\n# A tibble: 5 × 4\n# Groups:   species [3]\n  species   island    mean_flipper_length sd_flipper_length\n  <fct>     <fct>                   <dbl>             <dbl>\n1 Adelie    Biscoe                   189.              6.73\n2 Adelie    Dream                    190.              6.59\n3 Adelie    Torgersen                191.              6.23\n4 Chinstrap Dream                    196.              7.13\n5 Gentoo    Biscoe                   217.              6.48\n\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-08-16T17:07:42-07:00",
+    "last_modified": "2021-11-30T15:43:45-08:00",
     "input_file": {}
   },
   {
     "path": "posts/2021-08-10-a-function-i-learned/",
-    "title": "A function I learned",
-    "description": "Using ggplot to plot data.",
+    "title": "Using ggplot",
+    "description": "An example using ggplot to plot data.",
     "author": [
       {
         "name": "Grace Lewin",
@@ -45,26 +45,9 @@
     ],
     "date": "2021-08-10",
     "categories": [],
-    "contents": "\nggplot() is a function that makes different kinds of plots. This example uses data from the palmerpenguins dataset and shows body mass vs flipper length. The graph shown below is a scatterplot, defined by `geom_point().\n\n\n\n\n\n\n",
+    "contents": "\nggplot() is a function that makes different kinds of plots. This example uses data from the palmerpenguins dataset and shows body mass vs flipper length. The graph shown below is a scatterplot, defined by geom_point(). The graph also is colored by species, using geom_point(aes(color = species)).\n\n\nggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +\n  geom_point(aes(color = species)) +\n  labs(title = \"Body Mass vs Flipper Length\", \n       x = \" Flipper Length (mm)\", \n       y = \"Body Mass (g)\")\n\n\n\n\n\n\n\n",
     "preview": "posts/2021-08-10-a-function-i-learned/images/ggplot2.jpg",
-    "last_modified": "2021-08-10T11:01:39-07:00",
-    "input_file": {}
-  },
-  {
-    "path": "posts/2021-08-10-hello/",
-    "title": "My first blog post",
-    "description": "Something really important",
-    "author": [
-      {
-        "name": "Grace Lewin",
-        "url": {}
-      }
-    ],
-    "date": "2021-08-10",
-    "categories": [],
-    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n\n",
-    "preview": {},
-    "last_modified": "2021-08-10T10:23:50-07:00",
+    "last_modified": "2021-11-30T15:44:37-08:00",
     "input_file": {}
   }
 ]

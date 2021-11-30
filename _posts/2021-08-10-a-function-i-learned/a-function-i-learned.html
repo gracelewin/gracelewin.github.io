@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,7 +77,7 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -85,10 +85,11 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
-  <!--radix_placeholder_meta_tags-->
-  <title>A function I learned</title>
 
-  <meta property="description" itemprop="description" content="Using ggplot to plot data."/>
+  <!--radix_placeholder_meta_tags-->
+  <title>Using ggplot</title>
+
+  <meta property="description" itemprop="description" content="An example using ggplot to plot data."/>
 
 
   <!--  https://schema.org/Article -->
@@ -97,26 +98,26 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="article:author" content="Grace Lewin"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="A function I learned"/>
+  <meta property="og:title" content="Using ggplot"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Using ggplot to plot data."/>
+  <meta property="og:description" content="An example using ggplot to plot data."/>
   <meta property="og:locale" content="en_US"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="A function I learned"/>
-  <meta property="twitter:description" content="Using ggplot to plot data."/>
+  <meta property="twitter:title" content="Using ggplot"/>
+  <meta property="twitter:description" content="An example using ggplot to plot data."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview"]}},"value":[{"type":"character","attributes":{},"value":["A function I learned"]},{"type":"character","attributes":{},"value":["Using ggplot to plot data.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Grace Lewin"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["08-10-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["images/ggplot2.jpg"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview"]}},"value":[{"type":"character","attributes":{},"value":["Using ggplot"]},{"type":"character","attributes":{},"value":["An example using ggplot to plot data.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Grace Lewin"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["08-10-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["images/ggplot2.jpg"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["a-function-i-learned_files/anchor-4.2.2/anchor.min.js","a-function-i-learned_files/bowser-1.9.3/bowser.min.js","a-function-i-learned_files/distill-2.2.21/template.v2.js","a-function-i-learned_files/figure-html5/unnamed-chunk-1-1.png","a-function-i-learned_files/header-attrs-2.9/header-attrs.js","a-function-i-learned_files/jquery-1.11.3/jquery.min.js","a-function-i-learned_files/popper-2.6.0/popper.min.js","a-function-i-learned_files/tippy-6.2.7/tippy-bundle.umd.min.js","a-function-i-learned_files/tippy-6.2.7/tippy-light-border.css","a-function-i-learned_files/tippy-6.2.7/tippy.css","a-function-i-learned_files/tippy-6.2.7/tippy.umd.min.js","a-function-i-learned_files/webcomponents-2.0.0/webcomponents.js","images/ggplot2.jpg","images/koala.jpg"]}
+  {"type":"character","attributes":{},"value":["a-function-i-learned_files/anchor-4.2.2/anchor.min.js","a-function-i-learned_files/bowser-1.9.3/bowser.min.js","a-function-i-learned_files/distill-2.2.21/template.v2.js","a-function-i-learned_files/figure-html5/unnamed-chunk-1-1.png","a-function-i-learned_files/header-attrs-2.11/header-attrs.js","a-function-i-learned_files/header-attrs-2.9/header-attrs.js","a-function-i-learned_files/jquery-1.11.3/jquery.min.js","a-function-i-learned_files/jquery-3.6.0/jquery-3.6.0.js","a-function-i-learned_files/jquery-3.6.0/jquery-3.6.0.min.js","a-function-i-learned_files/jquery-3.6.0/jquery-3.6.0.min.map","a-function-i-learned_files/popper-2.6.0/popper.min.js","a-function-i-learned_files/tippy-6.2.7/tippy-bundle.umd.min.js","a-function-i-learned_files/tippy-6.2.7/tippy-light-border.css","a-function-i-learned_files/tippy-6.2.7/tippy.css","a-function-i-learned_files/tippy-6.2.7/tippy.umd.min.js","a-function-i-learned_files/webcomponents-2.0.0/webcomponents.js","images/ggplot2.jpg","images/koala.jpg"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1263,7 +1264,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1434,8 +1438,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="a-function-i-learned_files/header-attrs-2.9/header-attrs.js"></script>
-  <script src="a-function-i-learned_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="a-function-i-learned_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="a-function-i-learned_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="a-function-i-learned_files/popper-2.6.0/popper.min.js"></script>
   <link href="a-function-i-learned_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="a-function-i-learned_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1455,7 +1459,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"A function I learned","description":"Using ggplot to plot data.","authors":[{"author":"Grace Lewin","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-08-10T00:00:00.000+00:00","citationText":"Lewin, 2021"}
+{"title":"Using ggplot","description":"An example using ggplot to plot data.","authors":[{"author":"Grace Lewin","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-08-10T00:00:00.000-07:00","citationText":"Lewin, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1465,10 +1469,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>A function I learned</h1>
+<h1>Using ggplot</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Using ggplot to plot data.</p></p>
+<p><p>An example using ggplot to plot data.</p></p>
 </div>
 
 <div class="d-byline">
@@ -1478,8 +1482,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<p><code>ggplot()</code> is a function that makes different kinds of plots. This example uses data from the palmerpenguins dataset and shows body mass vs flipper length. The graph shown below is a scatterplot, defined by `geom_point().</p>
+<p><code>ggplot()</code> is a function that makes different kinds of plots. This example uses data from the palmerpenguins dataset and shows body mass vs flipper length. The graph shown below is a scatterplot, defined by <code>geom_point()</code>. The graph also is colored by species, using <code>geom_point(aes(color = species))</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>penguins</span>, <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>flipper_length_mm</span>, y <span class='op'>=</span> <span class='va'>body_mass_g</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>color <span class='op'>=</span> <span class='va'>species</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Body Mass vs Flipper Length"</span>, 
+       x <span class='op'>=</span> <span class='st'>" Flipper Length (mm)"</span>, 
+       y <span class='op'>=</span> <span class='st'>"Body Mass (g)"</span><span class='op'>)</span>
+</code></pre>
+</div>
 <p><img src="a-function-i-learned_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

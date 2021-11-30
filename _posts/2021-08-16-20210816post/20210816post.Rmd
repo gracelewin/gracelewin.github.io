@@ -1,7 +1,7 @@
 ---
-title: "These are a few of my favorite things..."
+title: "summarize() Function"
 description: |
-  Some Functions and concepts I've learned so far
+  Description and example of the summarize() function
 author:
   - name: Grace Lewin
     url: {}
@@ -13,7 +13,7 @@ output:
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, include = TRUE)
 library(tidyverse)
 library(palmerpenguins)
 ```

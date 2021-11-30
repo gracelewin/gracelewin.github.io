@@ -18,29 +18,21 @@ Fall 2021</description>
       <pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>These are a few of my favorite things...</title>
+      <title>summarize() Function</title>
       <dc:creator>Grace Lewin</dc:creator>
       <link>https://gracelewin.github.io/posts/2021-08-16-20210816post</link>
-      <description>Some Functions and concepts I've learned so far</description>
+      <description>Description and example of the summarize() function</description>
       <guid>https://gracelewin.github.io/posts/2021-08-16-20210816post</guid>
       <pubDate>Mon, 16 Aug 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>A function I learned</title>
+      <title>Using ggplot</title>
       <dc:creator>Grace Lewin</dc:creator>
       <link>https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned</link>
-      <description>Using ggplot to plot data.</description>
+      <description>An example using ggplot to plot data.</description>
       <guid>https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned</guid>
       <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
       <media:content url="https://gracelewin.github.io/posts/2021-08-10-a-function-i-learned/images/ggplot2.jpg" medium="image" type="image/jpeg"/>
-    </item>
-    <item>
-      <title>My first blog post</title>
-      <dc:creator>Grace Lewin</dc:creator>
-      <link>https://gracelewin.github.io/posts/2021-08-10-hello</link>
-      <description>Something really important</description>
-      <guid>https://gracelewin.github.io/posts/2021-08-10-hello</guid>
-      <pubDate>Tue, 10 Aug 2021 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
