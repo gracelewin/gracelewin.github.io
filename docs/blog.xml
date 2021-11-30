@@ -7,7 +7,16 @@
     <description>My Website
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 16 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 30 Nov 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Effects of Poverty and Education level on CA County AQI</title>
+      <dc:creator>Grace Lewin</dc:creator>
+      <link>https://gracelewin.github.io/posts/2021-11-30-effects-of-poverty-and-education-level-on-ca-county-aqi</link>
+      <description>Final project for EDS 222: Statistics for Data Science.
+Fall 2021</description>
+      <guid>https://gracelewin.github.io/posts/2021-11-30-effects-of-poverty-and-education-level-on-ca-county-aqi</guid>
+      <pubDate>Tue, 30 Nov 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>These are a few of my favorite things...</title>
       <dc:creator>Grace Lewin</dc:creator>

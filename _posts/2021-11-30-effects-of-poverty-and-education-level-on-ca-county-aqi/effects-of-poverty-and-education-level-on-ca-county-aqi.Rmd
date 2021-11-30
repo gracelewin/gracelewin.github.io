@@ -1,0 +1,22 @@
+---
+title: "Effects of Poverty and Education level on CA County AQI"
+description: |
+  Final project for EDS 222: Statistics for Data Science.
+  Fall 2021
+author:
+  - name: Grace Lewin
+    url: {}
+date: 2021-11-30
+output:
+  distill::distill_article:
+    self_contained: false
+draft: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+

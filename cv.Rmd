@@ -1,7 +1,6 @@
 ---
 title: "My CV"
 description: |
-  This is my super impressive CV!
 ---
 
 ```{r setup, include=FALSE}

@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-11-30-effects-of-poverty-and-education-level-on-ca-county-aqi/",
+    "title": "Effects of Poverty and Education level on CA County AQI",
+    "description": "Final project for EDS 222: Statistics for Data Science.\nFall 2021",
+    "author": [
+      {
+        "name": "Grace Lewin",
+        "url": {}
+      }
+    ],
+    "date": "2021-11-30",
+    "categories": [],
+    "contents": "\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-11-30T15:37:01-08:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-08-16-20210816post/",
     "title": "These are a few of my favorite things...",
     "description": "Some Functions and concepts I've learned so far",
