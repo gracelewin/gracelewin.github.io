@@ -10,7 +10,7 @@ date: 2021-11-30
 output:
   distill::distill_article:
     self_contained: false
-draft: true
+draft: false
 ---
 
 
@@ -18,5 +18,380 @@ draft: true
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+---
+title: "Effect of Education and Poverty on Average AQI of Counties in California"
+author: "Grace Lewin"
+date: "11/28/2021"
+output:
+  html_document: default
+  pdf_document: default
+---
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+library(lubridate)
+library(kableExtra)
+library(gt)
+```
 
 
+There is much evidence that shows that disadvantaged communities are exposed to poorer air quality than advantaged communities (Pearce et al., 2006). This is a significant environmental justice concern, as poor air quality can contribute to a multitude of health concerns. There are also studies that suggest that certain air pollution can decrease student health and academic success (Mohai et al., 2011). Currently, there are many research studies underway regarding ways to alleviate this inequality.
+
+Air quality is decreased in larger cities with more industrial and vehicle pollution, and also by natural events such as wildfires.
+
+With this evidence in mind, I was interested to find out what the relationship is between education level and the air quality in California counties. Knowing that there is a high potential to have an omitted variable bias in education level on air quality, I was also interested to see if there was a relationship due to poverty on air quality.
+
+If there is a relationship between these variables, we can conclude that people are unequally distributed in areas of better or worse air quality. This knowledge of what variables can most predict the air quality that a person experiences will help to direct efforts and programs that attempt to reduce this inequality in CA.
+
+## Dataset Description
+
+### AQI Data
+
+I am using AQI to quantify air quality. I am using a dataset that reports the [daily AQI of most counties in US](https://aqs.epa.gov/aqsweb/airdata/download_files.html#AQI). I  filtered this data to include only the counties in California. 
+
+AQI is an index from 0 - 500 that describes the relative air quality of highest concentration of a pollutant. This pollutant that is the highest for the day is called the "defining parameter." The six defining parameters that contribute to AQI are Ozone, CO, NO2, SO2, PM 2.5, and PM 10. Daily summary AQI recordings include: 1) The aggregate of all sub-daily measurements taken at the monitor. 2) The single sample value if the monitor takes a single, daily sample (e.g., there is only one sample with a 24-hour duration). In this case, the mean and max daily sample will have the same value.
+
+This dataset is made publicly available by the US EPA. This dataset is limited in that it only includes 54 out of 58 counties. Although there is data available on the US EPA website for AQI from 1980-2021, I have only used the data from 2015-2019 to match the dates that the data on education has available. 
+
+
+### Education and Poverty Data
+
+Data on [education](https://data.ers.usda.gov/reports.aspx?ID=17829) and [poverty](https://data.ers.usda.gov/reports.aspx?ID=17826) are provided by the USDA and include education level percentages and poverty percentages for all counties in the US. I have just selected the counties in California.
+
+For the education dataset, I only used the percentages that have been averaged over 2015-2019 to make this analysis reflect the data from as recently as possible. There are four levels of education reported in this dataset: Not completed high school, completed high school, completed some college, and completed college. 
+
+The poverty dataset only includes data from 2019, and I have only used the Percent column describing the percentage of All People in Poverty. This dataset is thus limited in that it only accounts for one year, whereas the other datasets have years 2015-2019.
+
+## Analysis Plan
+
+To accurately compare these datasets to each other, I have found the mean AQI value for each county from 2015-2019. I then joined all datasets together using `left_join()` on the county name. Since not all counties are represented in the AQI data, this resulting dataframe has 54 counties in it (out of 58 total counties in CA).
+
+To understand the relationship between education and air quality, I will run 4 different regressions between each individual education level and mean AQI of California counties. This will tell me if there is a statistical relationship between them and what the slope of the relationship is. 
+
+$Air quality = \beta_0 + \beta_1*\%NotCompletedHighSchool$
+
+$Air quality = \beta_0 + \beta_1*\%CompletedHighSchool$
+
+$Air quality = \beta_0 + \beta_1*\%CompletedSomeCollege$
+
+$Air quality = \beta_0 + \beta_1*\%NotCompletedCollege$
+
+I hypothesize that there are many factors that contribute to the air quality of where an individual is living. As we know, lower air quality has been linked to areas of low-income communities. Thus, in addition to education level, I will be looking at the individual effect of poverty on mean AQI:
+
+$Air quality = \beta_0 + \beta_1*\%Poverty$
+
+To hopefully reduce some of the omitted variable bias, I will also run the regression of the combined effect of education level and poverty on mean AQI in California:
+
+$Air quality = \beta_0 + \beta_1*\%EducationLevel + \%Poverty$
+
+
+```{r}
+filepath = "/Users/Grace/Desktop/MEDS/gracelewin.github.io/_posts/2021-11-30-effects-of-poverty-and-education-level-on-ca-county-aqi/data/"
+
+education <- read_csv(file.path(filepath, "Education_2015_2019.csv")) %>% 
+  clean_names() %>% 
+  select(fips, county, x2013_rural_urban_continuum_code, 
+         not_completing_high_school_2015_2019, completing_high_school_2015_2019,
+         completing_some_college_2015_2019, completing_college_2015_2019) %>% 
+  separate(col = county, into = c("county", "state"), sep = ",")
+
+ca_aqi_2015 <- read_csv(file.path(filepath, "daily_aqi_by_county_2015.csv")) %>% 
+  clean_names() %>% 
+  filter(state_name == "California") %>% 
+  rename(county = county_name)
+
+ca_aqi_2016 <- read_csv(file.path(filepath, "daily_aqi_by_county_2016.csv")) %>% 
+  clean_names() %>% 
+  filter(state_name == "California") %>% 
+  rename(county = county_name)
+
+ca_aqi_2017 <- read_csv(file.path(filepath, "daily_aqi_by_county_2017.csv")) %>% 
+  clean_names() %>% 
+  filter(state_name == "California") %>% 
+  rename(county = county_name)
+
+ca_aqi_2018 <- read_csv(file.path(filepath, "daily_aqi_by_county_2018.csv")) %>% 
+  clean_names() %>% 
+  filter(state_name == "California") %>% 
+  rename(county = county_name)
+
+ca_aqi_2019 <- read_csv(file.path(filepath, "daily_aqi_by_county_2019.csv")) %>% 
+  clean_names() %>% 
+  filter(state_name == "California") %>% 
+  rename(county = county_name)
+
+ca_aqi_all <- rbind(ca_aqi_2015, ca_aqi_2016, ca_aqi_2017, ca_aqi_2018, ca_aqi_2019) %>% 
+  mutate(date = as.Date(date))
+
+aqi_education <- left_join(ca_aqi_all, education) %>% 
+  rename(nchs = not_completing_high_school_2015_2019) %>% 
+  rename(chs = completing_high_school_2015_2019) %>% 
+  rename(csc = completing_some_college_2015_2019) %>% 
+  rename(cc = completing_college_2015_2019)
+  
+aqi_education$nchs <- as.numeric(sub("%", "", aqi_education$nchs))
+aqi_education$chs <- as.numeric(sub("%", "", aqi_education$chs))
+aqi_education$csc <- as.numeric(sub("%", "", aqi_education$csc))
+aqi_education$cc <- as.numeric(sub("%", "", aqi_education$cc))
+
+
+```
+
+# Poverty
+
+```{r}
+ca_poverty_2019 <- read_csv(file.path(filepath, "ca_poverty_2019.csv")) %>% 
+  select(fips, county, ruc_code, percent, lowerbound, upperbound) %>% 
+  rename(poverty_perc = percent)
+
+aqi_poverty <- left_join(ca_aqi_2019, ca_poverty_2019, by = "county")
+
+aqi_poverty_avg_aqi <- aqi_poverty %>% 
+  group_by(county, poverty_perc, ruc_code) %>% 
+  summarise(mean_aqi = mean(aqi))
+```
+
+
+## Join poverty dataset with aqi and education
+
+```{r}
+aqi_education_poverty <- left_join(aqi_education, ca_poverty_2019)
+
+aqi_education_poverty_avg_aqi <- aqi_education_poverty %>% 
+  group_by(county, poverty_perc, ruc_code, nchs, chs, csc, cc) %>% 
+  summarise(mean_aqi = mean(aqi))
+```
+
+
+```{r}
+aqi_education_avg_aqi <- aqi_education %>% 
+  group_by(county, nchs, chs, csc, cc) %>% 
+  summarise(mean_aqi = mean(aqi)) %>% 
+  mutate(sum = sum(nchs, chs, csc, cc))
+```
+
+
+```{r}
+## The effect of not completing high school on mean aqi in a county from 2015 - 2019
+# ggplot(aqi_education_avg_aqi, aes(x = nchs, y = mean_aqi)) +
+#   geom_point() +
+#   labs(title = "Regression of Not Completing High School and Mean AQI for Counties in CA",
+#        subtitle = "2015-2019",
+#        x = "Not Completing High School (%)",
+#        y = "Mean AQI (unitless from 0-500)") +
+#   geom_text(aes(label=county),hjust=0, vjust=1) +
+#   geom_smooth(method='lm', formula= y~x, color="lightcoral", se=T, size=1.5) +
+#   theme_minimal()
+
+mod_nchs <- lm(mean_aqi ~ nchs, data =aqi_education_avg_aqi)
+nchs_p <- summary(mod_nchs)$coefficients[2,4]
+nchs_coeff <- summary(mod_nchs)$coefficients[2,1]
+```
+
+
+
+```{r}
+## The effect of completing high school on mean aqi in a county in CA from 2015 - 2019
+
+# ggplot(aqi_education_avg_aqi, aes(x = chs, y = mean_aqi)) +
+#   geom_point() +
+#   geom_text(aes(label=county),hjust=0, vjust=1) +
+#   geom_smooth(method='lm', formula= y~x, color="lightcoral", se=T, size=1.5) +
+#   theme_minimal()
+
+mod_chs <- lm(mean_aqi ~ chs, data =aqi_education_avg_aqi)
+chs_p <- summary(mod_chs)$coefficients[2,4]
+chs_coeff <- summary(mod_chs)$coefficients[2,1]
+
+```
+
+
+
+```{r}
+## The effect of completing some college on mean aqi of a county in CA from 2015-2019
+
+# ggplot(aqi_education_avg_aqi, aes(x = csc, y = mean_aqi)) +
+#   geom_point() +
+#   geom_text(aes(label=county),hjust=0, vjust=1) +
+#   geom_smooth(method='lm', formula= y~x, color="lightcoral", se=T, size=1.5) +
+#   theme_minimal()
+
+mod_csc <- lm(mean_aqi ~ csc, data =aqi_education_avg_aqi)
+csc_p <- summary(mod_csc)$coefficients[2,4]
+csc_coeff <- summary(mod_csc)$coefficients[2,1]
+
+```
+
+
+
+```{r}
+## The effect of completing college on mean aqi of a county in CA from 2015 - 2019
+
+# ggplot(aqi_education_avg_aqi, aes(x = cc, y = mean_aqi)) +
+#   geom_point() +
+#   labs(title = "County Mean AQI vs Completing College 2015-2019") +
+#   geom_text(aes(label=county),hjust=0, vjust=1) +
+#   geom_smooth(method='lm', formula= y~x, color="lightcoral", se=T, size=1.5) +
+#   theme_minimal()
+
+mod_cc <- lm(mean_aqi ~ cc, data =aqi_education_avg_aqi)
+cc_p <- summary(mod_cc)$coefficients[2,4]
+cc_coeff <- summary(mod_cc)$coefficients[2,1]
+
+```
+
+
+
+
+
+```{r}
+# Poverty and AQI
+
+## The effect of poverty on mean aqi in a county in CA in 2019
+
+# ggplot(aqi_poverty_avg_aqi, aes(x = poverty_perc, y = mean_aqi)) +
+#   geom_point() +
+#   geom_text(aes(label=county),hjust=0, vjust=1) +
+#   geom_smooth(method='lm', formula= y~x, color="lightcoral", se=T, size=1.5) +
+#   theme_minimal()
+
+mod_pov_aqi <- lm(mean_aqi ~ poverty_perc, data =aqi_poverty_avg_aqi)
+#summary(mod)
+
+```
+
+```{r}
+# ggplot(aqi_education_poverty_avg_aqi, aes(x = poverty_perc, y = nchs)) +
+#   geom_point() +
+#   geom_text(aes(label=county),hjust=0, vjust=1) +
+#   geom_smooth(method='lm', formula= y~x, color="lightcoral", se=T, size=1.5) +
+#   theme_minimal()
+
+mod_nchs_pov <- lm(nchs ~ poverty_perc, data =aqi_education_poverty_avg_aqi)
+#summary(mod)
+
+```
+
+
+
+
+
+
+
+## Results
+
+When the individual regressions for each education level on air quality, these are the estimates and p-values we get:
+
+```{r}
+education_levels <- c("Not Completed High School", "Completed High School", "Completed Some College", "Completed College")
+
+coeff_education <- c(nchs_coeff, chs_coeff, csc_coeff, cc_coeff)
+
+p_values_education <- c(nchs_p, chs_p, csc_p, cc_p)
+
+df_education_pvalues <- tibble(education_levels, coeff_education, p_values_education)
+
+gt(df_education_pvalues) %>% 
+  cols_label(education_levels = "Education Level",
+             coeff_education = "Estimate",
+             p_values_education = "p-value")
+```
+
+Since the Not Completed High School level is the most significant (since it has the lowest p-value), let's just focus on that education level for the rest of our analysis.
+
+First, it helps to visualize this relationship:
+
+```{r, fig.width=5, fig.height=4}
+ggplot(aqi_education_avg_aqi, aes(x = nchs, y = mean_aqi)) +
+  geom_point() +
+  labs(title = "Relationship of Not Completing High School and \nMean AQI for Counties in CA",
+       subtitle = "2015-2019",
+       x = "Not Completing High School (%)",
+       y = "Mean AQI (unitless from 0-500)") +
+  geom_text(aes(label=county),hjust=0, vjust=1, size = 2, nudge_x = .2, check_overlap = TRUE) +
+  geom_smooth(method='lm', formula= y~x, color="lightcoral", se=T, size=1.5) +
+  theme_minimal()
+```
+
+From this figure, we can see that there is a positive relationship between the percentage of people not completing high school and the mean AQI of a county. This means that the more people who have not graduated high school will be living in an area with a higher AQI and thus a worse air quality. A p-value of 0.005 means that this relationship is statistically significant. From the table above, the estimate for this slope is 0.82.
+
+However, as discussed above, there is a high likelihood that we have some omitted variable bias in this estimate. There are many factors that both effect our outcome variable, AQI, and are corellated with an explanatory variable, in this case education level. One of these is poverty.
+
+To prove that not completing high school and poverty level are correlated, we plot a regression. 
+
+```{r, fig.width=5, fig.height=4}
+ggplot(aqi_education_poverty_avg_aqi, aes(x = poverty_perc, y = nchs)) +
+  geom_point() +
+  geom_text(aes(label=county),hjust=0, vjust=1, size = 2, nudge_x = .1, check_overlap = TRUE) +
+  geom_smooth(method='lm', formula= y~x, color="lightcoral", se=T, size=1.5) +
+  theme_minimal() +
+  labs(x = "Poverty Percentage (%)",
+       y = "Not Completed High School (%)",
+       title = "Relationship between Not Completing High School and Poverty",
+       subtitle = "2015-2019")
+
+mod_nchs_pov <- lm(nchs ~ poverty_perc, data =aqi_education_poverty_avg_aqi)
+sum_mod_nchs_pov<- data.frame(summary(mod_nchs_pov)$coefficients)
+row_names <- c("(Intercept)", "poverty percentage")
+df_mod_nchs_pov <- tibble(row_names, sum_mod_nchs_pov)
+gt(df_mod_nchs_pov) %>% 
+  cols_label(row_names = "")
+```
+
+This tells us that There is a positive correlation between not completing high school and poverty. The slope estimate is 0.86 with a p-value of 0.00028. This low p-value (<0.05) means that it is a statistically significant relationship.
+
+Interestingly, when a regression on just poverty and AQI is run, there is not a statistically significant relationship between the two. This was a surprise to me.
+
+However, when the regression of the combined effect of not completing high school and poverty on mean AQI in California counties is run, there are some interesting results.
+
+Again, this is the regression equation: 
+
+
+
+```{r}
+## **Multiple linear regression of not completing high school and poverty percentage on average aqi in a CA county using education data from 2015-2019 and poverty data from 2019.**
+
+nchs_poverty_mod <- lm(mean_aqi ~ nchs + poverty_perc, data =aqi_education_poverty_avg_aqi)
+print(summary(nchs_poverty_mod)$coefficients)
+#summary(nchs_poverty_mod)$r.squared
+```
+
+
+### Interpretation for the above regression:
+- Null hypothesis: There is no effect of not completing high school on mean county AQI in CA.
+
+- Alternative Hypothesis: There is an effect of not completing high school on mean county AQI in CA.
+
+- The slope coefficient on not completing high school is 0.7297. This means with each 1 percentage increase in the percentage of people in a county who did not complete high school, there is a 0.7297 increase in the AQI index (unitless from 0-500). The p-value of this slope is 0.0288. This is low enough (less than 0.05) to reject the null that there is no effect of not completing high school on the mean AQI of a county in CA. .02 p-value means that there is 2% chance that the null hypothesis is true. Since this is so low, we can reject the null hypothesis. Therefore, there is a statistical effect of not completing high school on average AQI in any given CA county.
+
+- The slope coefficient on the percentage of people in poverty is 0.3760. This means that with each increase in the percentage of people in poverty in a county, there is a 0.3760 increase in the average AQI index (unitless from 0-500). The p-value of this slop is 0.5261. This is too high to reject the null hypothesis that the percentage of people in poverty in a county has no effect on the mean AQI of that county. Therefore, there is not a statistical effect of poverty on average AQI in Californian counties. 
+
+- The fact that the coefficient goes down for nchs and the p-value goes up is indicative of omitted variable bias and suggests that poverty was an omitted variable in the first regression of just nchs and aqi. 
+
+- I find this very interesting because it is not what I would have originally expected. I would have expected that both poverty and education level would be statistically significant effects on AQI. 
+
+- However, there is still a high potential for omitted variable bias in this regression. Possible omitted variables could be income, race and/or ethnicity, or how rural an area is. 
+
+
+- An R squared value of 0.1142 means that 11.42% of the variation in mean AQI of a county in CA is explained by the percentage of people not completing high school and the poverty percentage of the county.
+
+
+Do a regression of just nchs and poverty to make sure it's a positive correlation. 
+
+
+
+```{r}
+nchs_poverty_95_ci <- confint(nchs_poverty_mod, level = 0.95)
+```
+
+95% Confidence Interval of the effect of the percentage of people not completing high school in a county on average AQI: (`r nchs_poverty_95_ci[2, 1:2]`)
+
+
+
+
+## References
+
+Mohai, P., Kweon, B. S., Lee, S., & Ard, K. (2011). Air pollution around schools is linked to poorer student health and academic performance. Health Affairs, 30(5), 852-862.
+
+Pearce, J., Kingham, S., & Zawar-Reza, P. (2006). Every Breath You Take? Environmental Justice and Air Pollution in Christchurch, New Zealand. Environment and Planning A: Economy and Space, 38(5), 919–938. https://doi.org/10.1068/a37446
