@@ -339,7 +339,7 @@ However, when the regression of the combined effect of not completing high schoo
 
 Again, this is the regression equation: 
 
-$Air quality = \beta_0 + \beta_1*\%EducationLevel + \%Poverty$
+$Air quality = \beta_0 + \beta_1*\%NotCompletedHighSchool + \%Poverty$
 
 The results of this regression are as follows:
 
