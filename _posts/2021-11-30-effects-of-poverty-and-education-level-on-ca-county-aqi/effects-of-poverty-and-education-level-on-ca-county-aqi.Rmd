@@ -290,7 +290,7 @@ gt(df_education_pvalues) %>%
              p_values_education = "p-value")
 ```
 
-Since the Not Completed High School level is the most significant (since it has the lowest p-value), let's just focus on that education level for the rest of our analysis.
+Since the Not Completed High School level is the only significant effect (since it has a p-value < 0.05), let's just focus on that education level for the rest of our analysis.
 
 First, it helps to visualize this relationship:
 
